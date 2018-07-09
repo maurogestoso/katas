@@ -2,18 +2,21 @@ package katas
 
 import "testing"
 
-func TestReverse(t *testing.T) {
-	cases := []struct {
-		input, expected string
-	}{
-		{"Hello, world", "dlrow ,olleH"},
-		{"Hello, 世界", "界世 ,olleH"},
-		{"", ""},
+func TestReverseString(t *testing.T) {
+	type args struct {
+		s string
 	}
-	for _, c := range cases {
-		result := ReverseString(c.input)
-		if result != c.expected {
-			t.Errorf("ReverseString(%q) == %q, expected %q", c.input, result, c.expected)
+	tests := []struct {
+		args args
+		want string
+	}{
+		{args{s: "Hello, world"}, "dlrow ,olleH"},
+		{args{s: "Hello, 世界"}, "界世 ,olleH"},
+		{args{s: ""}, ""},
+	}
+	for _, tt := range tests {
+		if got := ReverseString(tt.args.s); got != tt.want {
+			t.Errorf("ReverseString() = %v, want %v", got, tt.want)
 		}
 	}
 }

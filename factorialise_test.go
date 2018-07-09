@@ -3,17 +3,20 @@ package katas
 import "testing"
 
 func TestFactorialise(t *testing.T) {
-	cases := []struct {
-		input, expected int
-	}{
-		{5, 120},
-		{10, 3628800},
-		{20, 2432902008176640000},
+	type args struct {
+		n int
 	}
-	for _, c := range cases {
-		result := Factorialise(c.input)
-		if result != c.expected {
-			t.Errorf("Factorialise(%d) == %d. Expected %d", c.input, result, c.expected)
+	tests := []struct {
+		args args
+		want int
+	}{
+		{args{n: 5}, 120},
+		{args{n: 10}, 3628800},
+		{args{n: 20}, 2432902008176640000},
+	}
+	for _, tt := range tests {
+		if got := Factorialise(tt.args.n); got != tt.want {
+			t.Errorf("Factorialise() = %v, want %v", got, tt.want)
 		}
 	}
 }
